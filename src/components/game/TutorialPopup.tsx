@@ -28,8 +28,8 @@ export default function TutorialPopup({ onClose }: TutorialPopupProps) {
             <Lightbulb className="mr-2 h-6 w-6 text-yellow-400" /> Welcome to Retro Game Zone!
           </AlertDialogTitle>
           <AlertDialogDescription className={cn("text-left space-y-2 pt-2", activeTheme === "retro" ? "text-foreground" : "")}>
-            <p>Here&apos;s a quick guide:</p>
-            <ul className="list-disc list-inside space-y-1">
+            Here&apos;s a quick guide:
+            <ul className="list-disc list-inside space-y-1 pt-2"> {/* Added pt-2 for spacing since <p> was removed */}
               <li><strong>Play Tab:</strong> Tap here to start a Tic Tac Toe game. The theme will magically switch to retro Pokémon style!</li>
               <li><strong>Game Rules:</strong> Standard Tic Tac Toe. Get three in a row (horizontally, vertically, or diagonally) to win.</li>
               <li><strong>Leaderboard:</strong> Check top scores and win streaks.</li>
