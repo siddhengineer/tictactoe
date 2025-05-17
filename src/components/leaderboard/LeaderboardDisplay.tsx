@@ -39,7 +39,7 @@ export default function LeaderboardDisplay() {
   if (leaderboard.length === 0) {
     return (
       <div className={cn("text-center py-8", activeTheme === "retro" ? "text-foreground retro-text-shadow" : "text-muted-foreground")}>
-        <p className="text-lg">No scores yet. Be the first to make it to the leaderboard!</p>
+        <p className={cn("text-base sm:text-lg", activeTheme === "retro" ? "retro-text-shadow" : "")}>No scores yet. Be the first to make it to the leaderboard!</p>
         <Button onClick={() => handleShareScore(null)} className={cn("mt-4", activeTheme === "retro" ? "retro-button" : "")}>
           <Share2 className="mr-2 h-4 w-4" /> Share Game
         </Button>

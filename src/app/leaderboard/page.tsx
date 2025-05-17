@@ -19,9 +19,9 @@ export default function LeaderboardPage() {
       <Card className={cn("w-full max-w-2xl shadow-xl", activeTheme === "retro" ? "card retro-pixel-border" : "")}>
         <CardHeader className="text-center">
           <div className="flex justify-center mb-2">
-             <Trophy className={cn("h-12 w-12", activeTheme === "retro" ? "text-accent" : "text-primary")} />
+             <Trophy className={cn("h-10 w-10 sm:h-12 sm:w-12", activeTheme === "retro" ? "text-accent" : "text-primary")} />
           </div>
-          <CardTitle className={cn("text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Leaderboard</CardTitle>
+          <CardTitle className={cn("text-2xl sm:text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Leaderboard</CardTitle>
         </CardHeader>
         <CardContent>
           <LeaderboardDisplay />

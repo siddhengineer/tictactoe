@@ -21,13 +21,13 @@ export default function SettingsPage() {
       <Card className={cn("w-full max-w-md shadow-xl", activeTheme === "retro" ? "card retro-pixel-border" : "")}>
         <CardHeader className="text-center">
            <div className="flex justify-center mb-2">
-             <Info className={cn("h-12 w-12", activeTheme === "retro" ? "text-accent" : "text-primary")} />
+             <Info className={cn("h-10 w-10 sm:h-12 sm:w-12", activeTheme === "retro" ? "text-accent" : "text-primary")} />
           </div>
-          <CardTitle className={cn("text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Settings</CardTitle>
+          <CardTitle className={cn("text-2xl sm:text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Settings</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className={cn("p-4 border rounded-lg", activeTheme === "retro" ? "retro-pixel-border border-foreground" : "border-border")}>
-            <h3 className={cn("text-xl font-semibold mb-3", activeTheme === "retro" ? "retro-text-shadow" : "")}>Audio</h3>
+            <h3 className={cn("text-lg sm:text-xl font-semibold mb-3", activeTheme === "retro" ? "retro-text-shadow" : "")}>Audio</h3>
             <div className="flex items-center justify-between">
               <Label htmlFor="sound-toggle" className={cn("flex items-center text-base", activeTheme === "retro" ? "retro-text-shadow" : "")}>
                 {isSoundEnabled ? <Volume2 className="mr-2 h-5 w-5" /> : <VolumeX className="mr-2 h-5 w-5" />}
@@ -47,7 +47,7 @@ export default function SettingsPage() {
           </div>
 
           <div className={cn("p-4 border rounded-lg", activeTheme === "retro" ? "retro-pixel-border border-foreground" : "border-border")}>
-            <h3 className={cn("text-xl font-semibold mb-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>App Information</h3>
+            <h3 className={cn("text-lg sm:text-xl font-semibold mb-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>App Information</h3>
             <p className={cn(activeTheme === "retro" ? "retro-text-shadow" : "")}><strong>App Name:</strong> Retro Game Zone</p>
             <p className={cn(activeTheme === "retro" ? "retro-text-shadow" : "")}><strong>Version:</strong> 1.0.0</p>
             <p className={cn("mt-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>

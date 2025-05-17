@@ -35,18 +35,18 @@ export default function TicTacToeGame() {
   return (
     <Card className={cn("w-full max-w-md mx-auto shadow-xl my-4", activeTheme === "retro" ? "card retro-pixel-border" : "")}>
       <CardHeader className="text-center">
-        <CardTitle className={cn("text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Tic Tac Toe</CardTitle>
+        <CardTitle className={cn("text-2xl sm:text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Tic Tac Toe</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center space-y-4">
         <div className={cn("grid grid-cols-2 gap-4 w-full text-center mb-4 p-2 rounded-md", activeTheme === "retro" ? "bg-primary/20 retro-pixel-border border-foreground" : "bg-muted")}>
           <div>
             <p className={cn("text-sm font-medium", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Player X Score</p>
-            <p className={cn("text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.X}</p>
+            <p className={cn("text-xl sm:text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.X}</p>
             <p className={cn("text-xs", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Streak: {winStreaks.X}</p>
           </div>
           <div>
             <p className={cn("text-sm font-medium", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Player O Score</p>
-            <p className={cn("text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.O}</p>
+            <p className={cn("text-xl sm:text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.O}</p>
             <p className={cn("text-xs", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Streak: {winStreaks.O}</p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function TicTacToeGame() {
 
         {winner && (
           <div className={cn("mt-4 p-3 rounded-md text-center w-full", activeTheme === "retro" ? "bg-accent text-accent-foreground retro-pixel-border border-foreground" : "bg-primary text-primary-foreground")}>
-            <p className={cn("text-xl font-semibold", activeTheme === "retro" ? "retro-text-shadow" : "")}>
+            <p className={cn("text-lg sm:text-xl font-semibold", activeTheme === "retro" ? "retro-text-shadow" : "")}>
               {winner === "draw" ? "It's a Draw!" : `Player ${winner} Wins!`}
             </p>
           </div>
@@ -83,9 +83,8 @@ export default function TicTacToeGame() {
               value={avatarSeed} 
               onChange={(e) => setAvatarSeed(e.target.value)}
               className={cn(
-                "w-full p-2 border rounded-md", 
+                "w-full p-2 border rounded-md text-sm", // Added text-sm for select
                 activeTheme === "retro" ? "retro-pixel-border" : "bg-background border-input" 
-                // bg-input and text-foreground for retro are handled by global .theme-retro select rule
               )}
             >
               {avatarOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}

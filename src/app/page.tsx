@@ -30,10 +30,10 @@ export default function HomePage() {
               data-ai-hint="gaming logo"
             />
           </div>
-          <CardTitle className={cn("text-3xl sm:text-4xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>
+          <CardTitle className={cn("text-2xl sm:text-3xl md:text-4xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>
             Retro Game Zone
           </CardTitle>
-          <CardDescription className={cn("text-md sm:text-lg mt-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>
+          <CardDescription className={cn("text-sm sm:text-base md:text-lg mt-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>
             Your portal to classic gaming fun!
           </CardDescription>
         </CardHeader>
@@ -45,7 +45,7 @@ export default function HomePage() {
             <Button 
               size="lg" 
               className={cn(
-                "w-full sm:w-auto text-lg sm:text-xl py-3 px-8", 
+                "w-full sm:w-auto text-base sm:text-lg py-3 px-8", 
                 activeTheme === "retro" ? "retro-button retro-pixel-border" : ""
               )}
               aria-label="Start a new game of Tic Tac Toe"

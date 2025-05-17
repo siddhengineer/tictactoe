@@ -34,7 +34,7 @@ export default function TicTacToeBoard() {
             onClick={() => makeMove(rowIndex, colIndex)}
             disabled={!!cell || !!winner}
             className={cn(
-              "aspect-square w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center text-5xl sm:text-6xl font-bold transition-all duration-150 ease-in-out rounded-sm",
+              "aspect-square w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl font-bold transition-all duration-150 ease-in-out rounded-sm",
               activeTheme === "retro" 
                 ? "bg-background/80 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-accent retro-pixel-border border-foreground/50" 
                 : "bg-background hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-accent",
