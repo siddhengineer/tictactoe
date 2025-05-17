@@ -1,30 +1,23 @@
 
 "use client";
-// useEffect removed as setActiveTheme is no longer used here
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-// useAppContext removed as activeTheme is no longer used here
-// Image removed, Rocket and Grid3x3 icons imported
 import { Rocket, Grid3x3 } from "lucide-react";
-// cn utility is still useful for general class management
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
-  // activeTheme and setActiveTheme related logic removed
-
   return (
-    <main className="flex flex-col items-center justify-center min-h-full p-4 sm:p-8">
-      <Card className="w-full max-w-md shadow-xl">
+    <main className="flex flex-col items-center justify-center flex-grow p-4"> {/* Changed min-h-full to flex-grow */}
+      <Card className="w-full max-w-md shadow-xl"> {/* max-w-md is on layout, this can be w-full */}
         <CardHeader className="text-center">
           <div className="flex justify-center mb-6">
-            {/* Replaced Image with Grid3x3 icon */}
-            <Grid3x3 className="h-24 w-24 sm:h-28 sm:w-28 text-primary" />
+            <Grid3x3 className="h-20 w-20 sm:h-24 sm:w-24 text-primary" /> {/* Slightly smaller icon */}
           </div>
-          <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+          <CardTitle className="text-3xl sm:text-4xl font-bold text-foreground"> {/* Reduced md:text-5xl */}
             Tic Tac Toe
           </CardTitle>
-          <CardDescription className="text-base sm:text-lg md:text-xl mt-2 text-muted-foreground">
+          <CardDescription className="text-base sm:text-lg mt-2 text-muted-foreground"> {/* Reduced md:text-xl */}
             An elegant Tic Tac Toe experience.
           </CardDescription>
         </CardHeader>

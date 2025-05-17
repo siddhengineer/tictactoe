@@ -1,8 +1,7 @@
 
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-// Removed Press_Start_2P import
+// GeistMono removed as it's not actively used and we're simplifying fonts
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import BottomNavigationBar from "@/components/layout/BottomNavigationBar";
@@ -11,8 +10,8 @@ import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Tic Tac Toe - Elegant Play",
   description: "Play a clean and elegant game of Tic Tac Toe.",
-  manifest: "/manifest.json", // For PWA
-  icons: { // Placeholder icons, actual files would be needed
+  manifest: "/manifest.json",
+  icons: { 
     apple: "/icon-192x192.png", 
     icon: "/icon-192x192.png",
   },
@@ -24,12 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark"> {/* Added dark class for default dark theme */}
       <body 
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${GeistSans.variable} antialiased flex flex-col h-screen overflow-hidden`}
       >
         <AppProvider>
-          <div className="flex-grow pb-16 sm:pb-20"> {/* Padding for bottom nav */}
+          <div className="flex-grow overflow-y-auto w-full max-w-md mx-auto pb-16 sm:pb-20"> {/* Constrained width, centered, allows internal scroll */}
             {children}
           </div>
           <BottomNavigationBar />

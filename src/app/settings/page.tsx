@@ -1,6 +1,5 @@
 
 "use client";
-// useEffect and activeTheme removed from useAppContext import
 import { useAppContext } from "@/context/AppContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,20 +11,18 @@ import { cn } from "@/lib/utils";
 export default function SettingsPage() {
   const { isSoundEnabled, toggleSound } = useAppContext();
 
-  // useEffect for setActiveTheme removed
-
   return (
-    <main className="flex flex-col items-center min-h-full p-4">
-      <Card className="w-full max-w-md shadow-xl">
+    <main className="flex flex-col items-center flex-grow p-4"> {/* Changed min-h-full to flex-grow */}
+      <Card className="w-full shadow-xl"> {/* max-w-md removed, layout handles max-width */}
         <CardHeader className="text-center">
            <div className="flex justify-center mb-2">
-             <Info className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
+             <Info className="h-10 w-10 text-primary" /> {/* Reduced sm:h-12 sm:w-12 */}
           </div>
-          <CardTitle className="text-2xl sm:text-3xl font-bold">Settings</CardTitle>
+          <CardTitle className="text-2xl font-bold">Settings</CardTitle> {/* Reduced sm:text-3xl */}
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="p-4 border rounded-lg border-border">
-            <h3 className="text-lg sm:text-xl font-semibold mb-3">Audio</h3>
+            <h3 className="text-lg font-semibold mb-3">Audio</h3> {/* Reduced sm:text-xl */}
             <div className="flex items-center justify-between">
               <Label htmlFor="sound-toggle" className="flex items-center text-base">
                 {isSoundEnabled ? <Volume2 className="mr-2 h-5 w-5" /> : <VolumeX className="mr-2 h-5 w-5" />}
@@ -44,7 +41,7 @@ export default function SettingsPage() {
           </div>
 
           <div className="p-4 border rounded-lg border-border">
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">App Information</h3>
+            <h3 className="text-lg font-semibold mb-2">App Information</h3> {/* Reduced sm:text-xl */}
             <p><strong>App Name:</strong> Tic Tac Toe - Elegant Play</p>
             <p><strong>Version:</strong> 1.0.0</p>
             <p className="mt-2">
