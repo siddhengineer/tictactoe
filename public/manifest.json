@@ -1,8 +1,12 @@
 
 {
-  "name": "Retro Game Zone",
-  "short_name": "RetroGames",
-  "description": "A Tic Tac Toe game with a retro Pokémon twist!",
+  "name": "Retro Game Zone - Tic Tac Toe",
+  "short_name": "Retro TicTacToe",
+  "description": "Play a clean and elegant game of Tic Tac Toe in the Retro Game Zone.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2c3e50", 
+  "theme_color": "#3498db", 
   "icons": [
     {
       "src": "/icon-192x192.png",
@@ -13,11 +17,9 @@
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ecf0f1",
-  "theme_color": "#3498db"
+  "orientation": "portrait"
 }

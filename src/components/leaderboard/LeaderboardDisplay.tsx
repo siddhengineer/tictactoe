@@ -3,21 +3,20 @@
 import { useAppContext } from "@/context/AppContext";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-// Image import removed
-import { Share2, Star, TrendingUp, UserCircle2 } from "lucide-react"; // Added UserCircle2
+import { Share2, Star, TrendingUp, UserCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 export default function LeaderboardDisplay() {
-  const { leaderboard } = useAppContext(); // activeTheme removed
+  const { leaderboard } = useAppContext();
   const { toast } = useToast();
 
   const handleShareScore = async (entry: typeof leaderboard[0] | null) => {
     const shareData = {
-      title: "Tic Tac Toe Score!", // Updated title
+      title: "Retro Game Zone Score!",
       text: entry 
-        ? `I got ${entry.score} wins with a ${entry.winStreak} streak in Tic Tac Toe!` // Updated text, removed avatarSeed
-        : "Check out this elegant Tic Tac Toe game!", // Updated text
+        ? `I got ${entry.score} wins with a ${entry.winStreak} streak in Retro Game Zone's Tic Tac Toe!`
+        : "Check out this elegant Tic Tac Toe game in the Retro Game Zone!",
       url: window.location.origin,
     };
 
@@ -52,10 +51,10 @@ export default function LeaderboardDisplay() {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[50px]">Rank</TableHead>
-            <TableHead className="w-[50px]">Player</TableHead> {/* Changed from Avatar to Player Icon */}
+            <TableHead className="w-[50px]">Player</TableHead>
             <TableHead>Name</TableHead>
-            <TableHead className="text-right"><Star className="inline h-4 w-4 mr-1"/>Wins</TableHead>
-            <TableHead className="text-right"><TrendingUp className="inline h-4 w-4 mr-1"/>Streak</TableHead>
+            <TableHead className="text-right"><Star className="inline h-4 w-4 mr-1 text-yellow-400"/>Wins</TableHead>
+            <TableHead className="text-right"><TrendingUp className="inline h-4 w-4 mr-1 text-green-400"/>Streak</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -64,7 +63,6 @@ export default function LeaderboardDisplay() {
             <TableRow key={entry.id}>
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>
-                {/* Replaced Image with a generic UserCircle2 icon */}
                 <UserCircle2 
                   className="h-8 w-8 text-muted-foreground"
                 />

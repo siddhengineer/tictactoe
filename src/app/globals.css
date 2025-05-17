@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,86 +7,122 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Pixel font for retro theme - to be conditionally applied */
+@font-face {
+  font-family: 'PixelFont';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-pixel {
+  font-family: 'PixelFont', var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
 @layer base {
   :root {
-    /* Dark Theme Variables (Default) */
-    --background: 220 3% 13%; /* Dark Google Grey */
+    /* Dark Theme Variables (Default - Retro Game Zone Inspired) */
+    --background: 220 3% 13%; /* Dark Grey */
     --foreground: 210 17% 95%;  /* Light Grey/White for text */
-    --card: 225 6% 20%; /* Slightly lighter dark for cards */
-    --card-foreground: 210 17% 95%;
-    --popover: 225 6% 20%;
-    --popover-foreground: 210 17% 95%;
-    --primary: 217 90% 68%; /* Brighter Google Blue for dark mode */
-    --primary-foreground: 220 3% 13%; /* Dark text on primary */
+    
+    /* Card uses PRD's light gray #ecf0f1 -> HSL 200, 17%, 93% */
+    --card: 200 17% 93%; 
+    --card-foreground: 220 3% 13%; /* Dark text on light cards */
+    
+    --popover: 200 17% 93%; /* Consistent with cards */
+    --popover-foreground: 220 3% 13%;
+    
+    /* Primary: Vibrant blue (#3498db) -> HSL 207, 68%, 53% */
+    --primary: 207 68% 53%; 
+    --primary-foreground: 210 17% 95%; /* Light text on primary */
+    
     --secondary: 225 6% 25%; /* Darker shade for secondary elements */
     --secondary-foreground: 210 17% 95%;
+    
     --muted: 225 6% 25%;
     --muted-foreground: 210 10% 60%; /* Lighter grey for muted text */
-    --accent: 43 100% 55%; /* Google Yellow - vibrant on dark */
-    --accent-foreground: 220 3% 13%; /* Dark text on yellow */
-    --destructive: 5 69% 60%; /* Brighter Google Red for dark mode */
+    
+    /* Accent: Energetic orange (#e67e22) -> HSL 25, 80%, 52% */
+    --accent: 25 80% 52%; 
+    --accent-foreground: 220 3% 13%; /* Dark text on orange */
+    
+    --destructive: 0 72% 51%; /* Standard Red */
     --destructive-foreground: 210 17% 95%; /* Light text on destructive */
+    
     --border: 225 6% 30%; /* Darker border */
     --input: 225 6% 30%; 
-    --ring: 217 90% 68%; /* Brighter Google Blue for ring */
+    --ring: 207 68% 53%; /* Primary blue for ring */
+    
     --radius: 0.5rem;
 
-    /* Chart colors (Dark theme versions) */
-    --chart-1: 217 90% 68%; 
-    --chart-2: 5 69% 60%;   
-    --chart-3: 43 100% 55%; 
-    --chart-4: 150 83% 45%; 
-    --chart-5: 210 10% 70%; 
+    /* Chart colors (Dark theme versions - using palette) */
+    --chart-1: 207 68% 53%; /* Primary */
+    --chart-2: 25 80% 52%;   /* Accent */
+    --chart-3: 150 83% 45%; /* A green */
+    --chart-4: 5 69% 60%;   /* A red/pink */
+    --chart-5: 210 10% 70%; /* A light grey */
 
     /* Sidebar variables (Dark theme versions) */
     --sidebar-background: 225 6% 18%;
     --sidebar-foreground: 210 17% 95%;
-    --sidebar-primary: 217 90% 68%;
-    --sidebar-primary-foreground: 220 3% 13%;
+    --sidebar-primary: 207 68% 53%;
+    --sidebar-primary-foreground: 210 17% 95%;
     --sidebar-accent: 225 6% 22%;
     --sidebar-accent-foreground: 210 17% 95%;
     --sidebar-border: 225 6% 30%;
-    --sidebar-ring: 217 90% 68%;
+    --sidebar-ring: 207 68% 53%;
   }
 
   .light {
-    /* Light Theme Variables (If ever needed) */
-    --background: 210 17% 98%; 
-    --foreground: 220 3% 13%;  
-    --card: 0 0% 100%; 
+    /* Light Theme Variables (If ever needed - PRD Colors adapted) */
+    /* Background: Light gray (#ecf0f1) -> HSL 200, 17%, 93% */
+    --background: 200 17% 93%; 
+    --foreground: 220 3% 13%;  /* Dark text */
+    
+    --card: 0 0% 100%; /* White cards */
     --card-foreground: 220 3% 13%;
+    
     --popover: 0 0% 100%;
     --popover-foreground: 220 3% 13%;
-    --primary: 217 90% 61%; 
-    --primary-foreground: 0 0% 100%; 
-    --secondary: 210 16% 93%; 
+    
+    /* Primary: Vibrant blue (#3498db) -> HSL 207, 68%, 53% (can be a bit brighter for light mode if needed, e.g., 60% lightness) */
+    --primary: 207 68% 50%; 
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+    
+    --secondary: 210 16% 85%; /* Lighter secondary */
     --secondary-foreground: 220 3% 13%;
-    --muted: 210 16% 93%;
+    
+    --muted: 210 16% 85%;
     --muted-foreground: 210 4% 46%; 
-    --accent: 43 100% 48%; 
-    --accent-foreground: 220 3% 13%; 
-    --destructive: 5 69% 53%; 
+    
+    /* Accent: Energetic orange (#e67e22) -> HSL 25, 80%, 52% (can be a bit adjusted for light mode) */
+    --accent: 25 80% 48%; 
+    --accent-foreground: 220 3% 13%; /* Dark text on orange */
+    
+    --destructive: 0 72% 45%; /* Standard Red for light */
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 86%; 
-    --input: 220 13% 86%; 
-    --ring: 217 90% 61%; 
+    
+    --border: 220 13% 80%; 
+    --input: 220 13% 80%; 
+    --ring: 207 68% 50%; 
 
     /* Chart colors (Light theme versions) */
-    --chart-1: 217 90% 61%;
-    --chart-2: 5 69% 53%;  
-    --chart-3: 43 100% 48%;
-    --chart-4: 150 83% 36%;
+    --chart-1: 207 68% 50%;
+    --chart-2: 25 80% 48%;  
+    --chart-3: 150 83% 36%;
+    --chart-4: 0 72% 45%;
     --chart-5: 210 10% 40%;
 
     /* Sidebar variables (Light theme versions) */
-    --sidebar-background: 210 17% 97%;
+    --sidebar-background: 210 17% 90%;
     --sidebar-foreground: 220 3% 13%;
-    --sidebar-primary: 217 90% 61%;
+    --sidebar-primary: 207 68% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 16% 90%;
+    --sidebar-accent: 210 16% 83%;
     --sidebar-accent-foreground: 220 3% 13%;
-    --sidebar-border: 220 13% 86%;
-    --sidebar-ring: 217 90% 61%;
+    --sidebar-border: 220 13% 80%;
+    --sidebar-ring: 207 68% 50%;
   }
 }
 
