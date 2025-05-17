@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark"> {/* Added dark class for default dark theme */}
+    <html lang="en" className="dark">
       <body 
         className={`${GeistSans.variable} antialiased flex flex-col h-screen overflow-hidden`}
       >
