@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Gamepad2, Trophy, Settings2, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAppContext } from "@/context/AppContext";
+// useAppContext for activeTheme removed
 
 interface NavItem {
   href: string;
@@ -22,14 +22,14 @@ const navItems: NavItem[] = [
 
 export default function BottomNavigationBar() {
   const pathname = usePathname();
-  const { activeTheme } = useAppContext();
+  // activeTheme related logic removed
 
   return (
     <nav 
       className={cn(
         "fixed bottom-0 left-0 right-0 h-16 sm:h-20 border-t bg-card text-card-foreground shadow-lg",
-        "flex items-center justify-around",
-        activeTheme === "retro" && "retro-pixel-border bg-primary" 
+        "flex items-center justify-around"
+        // activeTheme specific classes removed
       )}
       aria-label="Main navigation"
     >
@@ -42,23 +42,22 @@ export default function BottomNavigationBar() {
             className={cn(
               "flex flex-col items-center justify-center w-full h-full transition-colors",
               "text-muted-foreground hover:text-primary",
-              isActive && "text-primary",
-              activeTheme === "retro" && "hover:text-accent-foreground",
-              activeTheme === "retro" && isActive && "text-accent-foreground"
+              isActive && "text-primary"
+              // activeTheme specific classes removed
             )}
             aria-current={isActive ? "page" : undefined}
           >
             <item.icon 
               className={cn(
-                "h-6 w-6 sm:h-7 sm:w-7 mb-0.5 sm:mb-1",
-                activeTheme === "retro" && "filter drop-shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+                "h-6 w-6 sm:h-7 sm:w-7 mb-0.5 sm:mb-1"
+                // activeTheme specific classes removed
               )} 
               strokeWidth={isActive ? 2.5 : 2} 
             />
             <span 
               className={cn(
-                "text-xs sm:text-sm",
-                activeTheme === "retro" ? "retro-text-shadow" : ""
+                "text-xs sm:text-sm"
+                // activeTheme specific classes removed
               )}
             >
               {item.label}

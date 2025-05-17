@@ -4,7 +4,7 @@ import { useAppContext } from "@/context/AppContext";
 import TicTacToeBoard from "./TicTacToeBoard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, RotateCcw, User, Users } from "lucide-react";
+import { Award, RotateCcw } from "lucide-react"; // User, Users icons might not be needed
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
@@ -17,79 +17,70 @@ export default function TicTacToeGame() {
     playerScores, 
     winStreaks,
     resetGame, 
-    addLeaderboardEntry,
-    activeTheme
+    addLeaderboardEntry
+    // activeTheme removed
   } = useAppContext();
   const [playerName, setPlayerName] = useState("");
-  const [avatarSeed, setAvatarSeed] = useState("Pikachu"); // Default avatar
+  // avatarSeed and avatarOptions removed
 
   const handleGameEndLeaderboard = () => {
     if (winner && winner !== 'draw') {
-      addLeaderboardEntry(playerName || `Player ${winner}`, avatarSeed);
+      addLeaderboardEntry(playerName || `Player ${winner}`); // avatarSeed removed
     }
     resetGame();
   };
   
-  const avatarOptions = ["Pikachu", "Bulbasaur", "Charmander", "Squirtle", "Eevee", "Snorlax"];
+  // avatarOptions removed
 
   return (
-    <Card className={cn("w-full max-w-md mx-auto shadow-xl my-4", activeTheme === "retro" ? "card retro-pixel-border" : "")}>
+    <Card className="w-full max-w-md mx-auto shadow-xl my-4">
       <CardHeader className="text-center">
-        <CardTitle className={cn("text-2xl sm:text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Tic Tac Toe</CardTitle>
+        <CardTitle className="text-2xl sm:text-3xl font-bold">Tic Tac Toe</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center space-y-4">
-        <div className={cn("grid grid-cols-2 gap-4 w-full text-center mb-4 p-2 rounded-md", activeTheme === "retro" ? "bg-primary/20 retro-pixel-border border-foreground" : "bg-muted")}>
+        <div className="grid grid-cols-2 gap-4 w-full text-center mb-4 p-2 rounded-md bg-muted">
           <div>
-            <p className={cn("text-sm font-medium", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Player X Score</p>
-            <p className={cn("text-xl sm:text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.X}</p>
-            <p className={cn("text-xs", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Streak: {winStreaks.X}</p>
+            <p className="text-sm font-medium text-muted-foreground">Player X Score</p>
+            <p className="text-xl sm:text-2xl font-bold text-primary">{playerScores.X}</p>
+            <p className="text-xs text-muted-foreground">Streak: {winStreaks.X}</p>
           </div>
           <div>
-            <p className={cn("text-sm font-medium", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Player O Score</p>
-            <p className={cn("text-xl sm:text-2xl font-bold", activeTheme === "retro" ? "text-accent retro-text-shadow" : "text-primary")}>{playerScores.O}</p>
-            <p className={cn("text-xs", activeTheme === "retro" ? "text-primary-foreground retro-text-shadow" : "text-muted-foreground")}>Streak: {winStreaks.O}</p>
+            <p className="text-sm font-medium text-muted-foreground">Player O Score</p>
+            <p className="text-xl sm:text-2xl font-bold text-accent">{playerScores.O}</p> {/* Changed to accent for Player O */}
+            <p className="text-xs text-muted-foreground">Streak: {winStreaks.O}</p>
           </div>
         </div>
 
         <TicTacToeBoard />
 
         {winner && (
-          <div className={cn("mt-4 p-3 rounded-md text-center w-full", activeTheme === "retro" ? "bg-accent text-accent-foreground retro-pixel-border border-foreground" : "bg-primary text-primary-foreground")}>
-            <p className={cn("text-lg sm:text-xl font-semibold", activeTheme === "retro" ? "retro-text-shadow" : "")}>
+          <div className={cn(
+            "mt-4 p-3 rounded-md text-center w-full",
+            winner === 'draw' ? "bg-muted text-muted-foreground" : "bg-primary text-primary-foreground" // Adjusted colors for winner display
+          )}>
+            <p className="text-lg sm:text-xl font-semibold">
               {winner === "draw" ? "It's a Draw!" : `Player ${winner} Wins!`}
             </p>
           </div>
         )}
 
         {!winner && (
-          <p className={cn("mt-4 text-lg", activeTheme === "retro" ? "text-foreground retro-text-shadow" : "text-muted-foreground")}>
-            Current Player: <span className={cn("font-bold", activeTheme === "retro" ? "text-accent" : "text-primary")}>{currentPlayer}</span>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Current Player: <span className={cn("font-bold", currentPlayer === 'X' ? "text-primary" : "text-accent")}>{currentPlayer}</span>
           </p>
         )}
 
         {winner && winner !== "draw" && (
-          <div className={cn("mt-4 space-y-3 p-4 border rounded-md w-full", activeTheme === "retro" ? "retro-pixel-border border-foreground bg-primary/10" : "border-border bg-background")}>
-            <Label htmlFor="playerName" className={cn(activeTheme === "retro" ? "text-foreground retro-text-shadow" : "")}>Your Name (for Leaderboard):</Label>
+          <div className="mt-4 space-y-3 p-4 border rounded-md w-full border-border bg-background">
+            <Label htmlFor="playerName">Your Name (for Leaderboard):</Label>
             <Input 
               id="playerName" 
               value={playerName} 
               onChange={(e) => setPlayerName(e.target.value)} 
               placeholder={`Player ${winner} Name`}
-              className={cn(activeTheme === "retro" ? "retro-pixel-border" : "")}
             />
-            <Label htmlFor="avatarSeed" className={cn(activeTheme === "retro" ? "text-foreground retro-text-shadow" : "")}>Choose Avatar:</Label>
-            <select 
-              id="avatarSeed" 
-              value={avatarSeed} 
-              onChange={(e) => setAvatarSeed(e.target.value)}
-              className={cn(
-                "w-full p-2 border rounded-md text-sm", // Added text-sm for select
-                activeTheme === "retro" ? "retro-pixel-border" : "bg-background border-input" 
-              )}
-            >
-              {avatarOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-            </select>
-            <Button onClick={handleGameEndLeaderboard} className={cn("w-full", activeTheme === "retro" ? "retro-button retro-pixel-border" : "")}>
+            {/* Avatar select dropdown removed */}
+            <Button onClick={handleGameEndLeaderboard} className="w-full">
               <Award className="mr-2 h-4 w-4" />
               Save Score & Play Again
             </Button>
@@ -97,13 +88,13 @@ export default function TicTacToeGame() {
         )}
         
         {winner && winner === "draw" && (
-           <Button onClick={resetGame} className={cn("mt-4 w-full", activeTheme === "retro" ? "retro-button retro-pixel-border" : "")}>
+           <Button onClick={resetGame} className="mt-4 w-full">
             <RotateCcw className="mr-2 h-4 w-4" /> Play Again
           </Button>
         )}
 
         {!winner && (
-          <Button onClick={resetGame} variant="outline" className={cn("mt-4 w-full", activeTheme === "retro" ? "retro-button retro-pixel-border bg-secondary text-secondary-foreground" : "")}>
+          <Button onClick={resetGame} variant="outline" className="mt-4 w-full">
             <RotateCcw className="mr-2 h-4 w-4" /> Reset Game
           </Button>
         )}

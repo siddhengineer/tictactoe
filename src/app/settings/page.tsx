@@ -1,6 +1,6 @@
 
 "use client";
-import { useEffect } from "react";
+// useEffect and activeTheme removed from useAppContext import
 import { useAppContext } from "@/context/AppContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,26 +10,24 @@ import { Info, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function SettingsPage() {
-  const { setActiveTheme, isSoundEnabled, toggleSound, activeTheme } = useAppContext();
+  const { isSoundEnabled, toggleSound } = useAppContext();
 
-  useEffect(() => {
-    setActiveTheme("modern");
-  }, [setActiveTheme]);
+  // useEffect for setActiveTheme removed
 
   return (
     <main className="flex flex-col items-center min-h-full p-4">
-      <Card className={cn("w-full max-w-md shadow-xl", activeTheme === "retro" ? "card retro-pixel-border" : "")}>
+      <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
            <div className="flex justify-center mb-2">
-             <Info className={cn("h-10 w-10 sm:h-12 sm:w-12", activeTheme === "retro" ? "text-accent" : "text-primary")} />
+             <Info className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
           </div>
-          <CardTitle className={cn("text-2xl sm:text-3xl font-bold", activeTheme === "retro" ? "retro-text-shadow" : "")}>Settings</CardTitle>
+          <CardTitle className="text-2xl sm:text-3xl font-bold">Settings</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className={cn("p-4 border rounded-lg", activeTheme === "retro" ? "retro-pixel-border border-foreground" : "border-border")}>
-            <h3 className={cn("text-lg sm:text-xl font-semibold mb-3", activeTheme === "retro" ? "retro-text-shadow" : "")}>Audio</h3>
+          <div className="p-4 border rounded-lg border-border">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3">Audio</h3>
             <div className="flex items-center justify-between">
-              <Label htmlFor="sound-toggle" className={cn("flex items-center text-base", activeTheme === "retro" ? "retro-text-shadow" : "")}>
+              <Label htmlFor="sound-toggle" className="flex items-center text-base">
                 {isSoundEnabled ? <Volume2 className="mr-2 h-5 w-5" /> : <VolumeX className="mr-2 h-5 w-5" />}
                 Sound Effects
               </Label>
@@ -38,22 +36,21 @@ export default function SettingsPage() {
                 checked={isSoundEnabled}
                 onCheckedChange={toggleSound}
                 aria-label="Toggle sound effects"
-                className={cn(activeTheme === "retro" ? "[&>span]:bg-primary" : "")}
               />
             </div>
-             <p className={cn("text-xs mt-2", activeTheme === "retro" ? "text-foreground/80 retro-text-shadow" : "text-muted-foreground")}>
-              Toggle 8-bit sound effects for game actions. (Sound effects are placeholders for now)
+             <p className="text-xs mt-2 text-muted-foreground">
+              Toggle sound effects for game actions.
             </p>
           </div>
 
-          <div className={cn("p-4 border rounded-lg", activeTheme === "retro" ? "retro-pixel-border border-foreground" : "border-border")}>
-            <h3 className={cn("text-lg sm:text-xl font-semibold mb-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>App Information</h3>
-            <p className={cn(activeTheme === "retro" ? "retro-text-shadow" : "")}><strong>App Name:</strong> Retro Game Zone</p>
-            <p className={cn(activeTheme === "retro" ? "retro-text-shadow" : "")}><strong>Version:</strong> 1.0.0</p>
-            <p className={cn("mt-2", activeTheme === "retro" ? "retro-text-shadow" : "")}>
-              Built with Next.js and love for retro gaming. This app is designed to be easily wrapped with Capacitor for Play Store deployment.
+          <div className="p-4 border rounded-lg border-border">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">App Information</h3>
+            <p><strong>App Name:</strong> Tic Tac Toe - Elegant Play</p>
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p className="mt-2">
+              Built with Next.js for a clean and elegant gaming experience.
             </p>
-            <p className={cn("text-xs mt-2", activeTheme === "retro" ? "text-foreground/80 retro-text-shadow" : "text-muted-foreground")}>
+            <p className="text-xs mt-2 text-muted-foreground">
               (Placeholder for actual icons, splash screens, and full metadata needed for Play Store)
             </p>
           </div>

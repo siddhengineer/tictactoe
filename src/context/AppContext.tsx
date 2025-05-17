@@ -11,12 +11,11 @@ interface LeaderboardEntry {
   name: string;
   score: number; // Wins
   winStreak: number;
-  avatarSeed: string; // For generating avatar, e.g., Pokémon name
+  // avatarSeed removed
 }
 
 interface AppState {
-  activeTheme: "modern" | "retro";
-  setActiveTheme: (theme: "modern" | "retro") => void;
+  // activeTheme and setActiveTheme removed
   isSoundEnabled: boolean;
   toggleSound: () => void;
   isTutorialComplete: boolean;
@@ -33,7 +32,7 @@ interface AppState {
   
   // Leaderboard State
   leaderboard: LeaderboardEntry[];
-  addLeaderboardEntry: (name: string, avatarSeed: string) => void; // Score and streak come from game state
+  addLeaderboardEntry: (name: string) => void; // avatarSeed parameter removed
 }
 
 const AppContext = createContext<AppState | undefined>(undefined);
@@ -71,7 +70,7 @@ const isBoardFull = (board: Board): boolean => {
 };
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [activeTheme, setActiveThemeState] = useState<"modern" | "retro">("modern");
+  // activeTheme and setActiveThemeState removed
   const [isSoundEnabled, setIsSoundEnabled] = useState<boolean>(true);
   const [isTutorialComplete, setIsTutorialComplete] = useState<boolean>(false);
 
@@ -84,38 +83,30 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
   useEffect(() => {
-    const storedSound = localStorage.getItem("retroGameZoneSoundEnabled");
+    // Set default theme classes on body if needed (though globals.css handles it now)
+    document.body.classList.add('font-sans'); // Example, assuming GeistSans is the default
+
+    const storedSound = localStorage.getItem("ticTacToeSoundEnabled"); // Updated key for clarity
     if (storedSound) setIsSoundEnabled(JSON.parse(storedSound));
-    const storedTutorial = localStorage.getItem("retroGameZoneTutorialComplete");
+    const storedTutorial = localStorage.getItem("ticTacToeTutorialComplete"); // Updated key
     if (storedTutorial) setIsTutorialComplete(JSON.parse(storedTutorial));
-    const storedLeaderboard = localStorage.getItem("retroGameZoneLeaderboard");
+    const storedLeaderboard = localStorage.getItem("ticTacToeLeaderboard"); // Updated key
     if (storedLeaderboard) setLeaderboard(JSON.parse(storedLeaderboard));
   }, []);
 
-  const setActiveTheme = (theme: "modern" | "retro") => {
-    setActiveThemeState(theme);
-    if (theme === 'retro') {
-      document.body.classList.add('theme-retro');
-      document.body.classList.add('font-retro');
-      document.body.classList.remove('font-modern');
-    } else {
-      document.body.classList.remove('theme-retro');
-      document.body.classList.remove('font-retro');
-      document.body.classList.add('font-modern');
-    }
-  };
+  // setActiveTheme function removed
 
   const toggleSound = () => {
     setIsSoundEnabled(prev => {
       const newState = !prev;
-      localStorage.setItem("retroGameZoneSoundEnabled", JSON.stringify(newState));
+      localStorage.setItem("ticTacToeSoundEnabled", JSON.stringify(newState));
       return newState;
     });
   };
 
   const markTutorialComplete = () => {
     setIsTutorialComplete(true);
-    localStorage.setItem("retroGameZoneTutorialComplete", JSON.stringify(true));
+    localStorage.setItem("ticTacToeTutorialComplete", JSON.stringify(true));
   };
 
   const makeMove = useCallback((row: number, col: number) => {
@@ -148,7 +139,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setWinner(null);
   }, []);
 
-  const addLeaderboardEntry = useCallback((name: string, avatarSeed: string) => {
+  const addLeaderboardEntry = useCallback((name: string) => { // avatarSeed parameter removed
     if (!winner || winner === 'draw') return;
 
     const winningPlayer = winner;
@@ -158,23 +149,23 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const newEntry: LeaderboardEntry = { 
       id: Date.now().toString(), 
       name: name || `Player ${winningPlayer}`, 
-      score, // total wins for this session for the player
+      score, 
       winStreak,
-      avatarSeed 
+      // avatarSeed removed
     };
     
     setLeaderboard(prev => {
       const updatedLeaderboard = [...prev, newEntry]
-        .sort((a, b) => b.score - a.score || b.winStreak - a.winStreak) // Sort by score, then streak
-        .slice(0, 10); // Keep top 10
-      localStorage.setItem("retroGameZoneLeaderboard", JSON.stringify(updatedLeaderboard));
+        .sort((a, b) => b.score - a.score || b.winStreak - a.winStreak) 
+        .slice(0, 10); 
+      localStorage.setItem("ticTacToeLeaderboard", JSON.stringify(updatedLeaderboard));
       return updatedLeaderboard;
     });
   }, [playerScores, winStreaks, winner]);
 
   return (
     <AppContext.Provider value={{
-      activeTheme, setActiveTheme,
+      // activeTheme, setActiveTheme removed
       isSoundEnabled, toggleSound,
       isTutorialComplete, markTutorialComplete,
       board, currentPlayer, winner, playerScores, winStreaks, makeMove, resetGame,
