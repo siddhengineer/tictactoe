@@ -3,36 +3,38 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 210 17% 96%; /* Light Gray */
+    --foreground: 240 10% 3.9%; /* Default Dark */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 207 68% 53%; /* Vibrant Blue */
+    --primary-foreground: 0 0% 98%; /* White */
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 26 80% 52%; /* Energetic Orange */
+    --accent-foreground: 0 0% 98%; /* White */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 207 68% 53%; /* Vibrant Blue for ring */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Sidebar variables (can be adjusted if sidebar is used differently) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -42,31 +44,33 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
+    --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
+    --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    /* Sidebar dark variables */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -76,6 +80,59 @@ body {
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Retro Theme Overrides */
+  .theme-retro {
+    --background: 72 88% 37%; /* Game Boy Screen Green/Yellow */
+    --foreground: 120 60% 14%; /* Game Boy Dark Green */
+    --card: 72 60% 47%; /* Darker shade for cards */
+    --card-foreground: 120 60% 14%;
+    --popover: 72 60% 47%;
+    --popover-foreground: 120 60% 14%;
+    --primary: 52 100% 50%; /* Pokémon Yellow */
+    --primary-foreground: 240 4% 14%; /* Dark Blue/Black */
+    --secondary: 13 88% 55%; /* Lighter Pokémon Red as secondary */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 72 50% 57%; /* Muted Game Boy Green */
+    --muted-foreground: 120 60% 20%;
+    --accent: 13 88% 48%; /* Pokémon Red */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 100% 35%; /* Darker Red for destructive */
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 60% 20%; /* Dark green border */
+    --input: 72 70% 42%; /* Input background */
+    --input-border: 120 60% 20%; /* Input border color, if not using border-image */
+    --ring: 52 100% 50%; /* Pokémon Yellow for ring */
+
+    /* Specific retro styles */
+    font-family: var(--font-press-start-2p), monospace !important;
+  }
+
+  .theme-retro .retro-pixel-border {
+    border-style: solid;
+    border-width: 4px;
+    border-image-slice: 2;
+    border-image-width: 2;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H2V2H0V0Z" fill="hsl(var(--foreground))" /><path d="M2 0H4V2H2V0Z" fill="hsl(var(--foreground))" /><path d="M4 0H6V2H4V0Z" fill="hsl(var(--foreground))" /><path d="M0 2H2V4H0V2Z" fill="hsl(var(--foreground))" /><path d="M4 2H6V4H4V2Z" fill="hsl(var(--foreground))" /><path d="M0 4H2V6H0V4Z" fill="hsl(var(--foreground))" /><path d="M2 4H4V6H2V4Z" fill="hsl(var(--foreground))" /><path d="M4 4H6V6H4V4Z" fill="hsl(var(--foreground))" /></svg>');
+    image-rendering: pixelated;
+  }
+  .theme-retro .retro-text-shadow {
+    text-shadow: 2px 2px hsl(var(--retro-shadow, 0 0% 0% / 0.5));
+  }
+   .theme-retro .retro-button {
+    @apply bg-primary text-primary-foreground shadow-md hover:brightness-110 active:brightness-90;
+    /* Removed @apply retro-pixel-border; */
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem; /* Slightly smaller for pixel font */
+  }
+  .theme-retro input, .theme-retro textarea, .theme-retro select {
+    @apply bg-input text-foreground;
+    /* Removed @apply retro-pixel-border; and border-color property */
+    /* Border will be applied via .retro-pixel-border class in JSX */
+  }
+  /* .theme-retro .card rule can be removed if it's empty, or kept if other card-specific retro styles are added later. */
+  /* For now, it's effectively empty after removing the problematic @apply. */
 }
 
 @layer base {
@@ -84,5 +141,6 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
   }
 }
